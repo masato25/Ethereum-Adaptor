@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+  <body>
+    <h1>MultiSig</h1>
+    <div class="contractInfo">
+      <span id="addr"></span>
+      <span id="balance"></span>
+      <div>
+        owner address:
+        <span id="owners"></span>
+      </div>
+    </div>
+    <div class="submitTransaction">
+      <div>
+        submit Transaction
+      </div>
+      <input id="sendto"></input>
+      <input id="value"></input>
+      <input id="memo"></input>
+      <button class="btn-submit">add transaction</button>
+    </div>
+
+    <div class="transactionCount">
+      <div>
+        Transaction count
+      </div>
+      <input id="checkBox1" type="checkbox"> pending
+      <input id="checkBox2" type="checkbox"> complete
+      <button class="btn-getcount">count</button>
+      <span class="result"></span>
+    </div>
+
+
+    <div class="getTransactionId">
+      <div>
+        get Transaction id list
+      </div>
+      <input id="from"></input>
+      <input id="to"></input>
+      <input id="checkBox1" type="checkbox"> pending
+      <input id="checkBox2" type="checkbox"> complete
+      <button class="btn-getid">query</button>
+      <span class="result"></span>
+    </div>
+
+    <div class="getTransactionById">
+      <div>
+        get Transaction info by id
+      </div>
+      <input id="tid"></input>
+      <button class="btn-query">query</button>
+      <span class="result"></span>
+    </div>
+
+    <div class="signTransactionById">
+      <div>
+        sign Transaction info by id
+      </div>
+      <input id="tid"></input>
+      <button class="btn-sign">sign</button>
+      <span class="result"></span>
+    </div>
+
+    <div class="isConfirmed">
+      <div>
+        check is confirmed by id
+      </div>
+      <input id="tid"></input>
+      <button class="btn-query">query</button>
+      <span class="result"></span>
+    </div>
+
+
+    <div class="executeTransaction">
+      <div>
+        executeTransaction by id
+      </div>
+      <input id="tid"></input>
+      <button class="btn-execute">execute</button>
+      <span class="result"></span>
+    </div>
+
+
+  </body>
+</html>
