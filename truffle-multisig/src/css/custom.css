@@ -1,0 +1,12 @@
+.result {
+  border-color: lightslategrey;
+  border-style: dotted;
+  position: relative;
+  top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+#lat-step {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}

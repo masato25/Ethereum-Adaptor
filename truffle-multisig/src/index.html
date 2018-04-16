@@ -7,87 +7,165 @@
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css" crossorigin="anonymous">
   </head>
   <body>
-    <h1>MultiSig</h1>
-    <div class="contractInfo">
-      <span id="addr"></span>
-      <span id="balance"></span>
-      <div>
-        owner address:
-        <span id="owners"></span>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Multisig Smart Contract</a>
+        </div>
+        <div class="navbar-right">
+          <a class="navbar-brand" href="#">PalletOne</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row align-items-center">
+        <h1>MultiSig</h1>
+        <div class="contractInfo form-group">
+          <span id="addr"></span>
+          <span id="balance"></span>
+          <div>
+            <!-- <label>owner address:</label>
+            <span id="owners"></span> -->
+          </div>
+        </div>
+        <div class="submitTransaction form-group">
+          <div id="lat-step">
+            <label class="label label-primary">submit Transaction</label>
+          </div>
+          <div class="row">
+            <span class="col-md-3">
+              <label>send to address:</label>
+              <input class="form-control" id="sendto"></input>
+            </span>
+            <span class="col-md-3">
+              <label>send value:</label>
+              <input class="form-control" id="value"></input>
+            </span>
+            <span class="col-md-3">
+              <label>memo:</label>
+              <input class="form-control" id="memo"></input>
+            </span>
+            <span class="col-md-3" style="position: relative; top: 23px;">
+              <button class="btn-submit btn btn-success">add transaction</button>
+            </span>
+          </div>
+          <div class="result"></div>
+        </div>
+
+        <div class="transactionCount form-group">
+          <div id="lat-step">
+            <label class="label label-primary">Transaction count</label>
+          </div>
+          <div class="row">
+            <span class="col-md-2">
+              <input id="checkBox1" type="checkbox"> pending
+            </span>
+            <span class="col-md-2">
+              <input id="checkBox2" type="checkbox"> complete
+            </span>
+            <span class="col-md-2">
+              <button class="btn-getcount btn">count</button>
+            </span>
+          </div>
+          <div class="result"></div>
+        </div>
+
+
+        <div class="getTransactionId form-group">
+          <div id="lat-step">
+            <label class="label label-primary">Get Transaction id list</label>
+          </div>
+          <div class="row">
+            <span class="col-md-2">
+              <label>begin index:</label>
+              <input class="form-control" id="from"></input>
+            </span>
+            <span class="col-md-2">
+              <label>until index:</label>
+              <input class="form-control" id="to"></input>
+            </span>
+            <span class="col-md-2" style="position: relative; top: 24px;">
+              <input id="checkBox1" type="checkbox"> pending
+            </span>
+            <span class="col-md-2" style="position: relative; top: 24px;">
+              <input id="checkBox2" type="checkbox"> complete
+            </span>
+            <span class="col-md-2" style="position: relative; top: 23px;">
+              <button class="btn-getid btn">query</button>
+            </span>
+          </div>
+          <div class="result"></div>
+        </div>
+
+        <div class="getTransactionById form-group">
+          <div id="lat-step">
+            <label class="label label-primary">Get Transaction info by id</label>
+          </div>
+          <div class="row">
+            <span class="col-md-2">
+              <label>transaction id:</label>
+              <input class="form-control" id="tid"></input>
+            </span>
+            <span class="col-md-2" style="position: relative; top: 23px;">
+              <button class="btn-query btn">query</button>
+            </span>
+          </div>
+          <div class="result"></div>
+        </div>
+
+        <div class="signTransactionById form-group">
+          <div id="lat-step">
+            <label class="label label-primary">Sign Transaction info by id</label>
+          </div>
+          <div class="row">
+            <span class="col-md-2">
+              <label>transaction id:</label>
+              <input class="form-control" id="tid"></input>
+            </span>
+            <span class="col-md-2" style="position: relative; top: 23px;">
+              <button class="btn-sign btn btn-success">sign</button>
+            </span>
+          </div>
+          <div class="result"></div>
+        </div>
+
+        <div class="isConfirmed form-group">
+          <div id="lat-step">
+            <label class="label label-primary">Check is confirmed by id</label>
+          </div>
+          <div class="row">
+            <span class="col-md-2">
+              <label>transaction id:</label>
+              <input class="form-control" id="tid"></input>
+            </span>
+            <span class="col-md-2" style="position: relative; top: 23px;">
+              <button class="btn-query btn">query</button>
+            </span>
+          </div>
+          <div class="result"></div>
+        </div>
+
+
+        <div class="executeTransaction form-group">
+          <div id="lat-step">
+            <label class="label label-primary">ExecuteTransaction by id</<label>
+          </div>
+          <div class="row">
+            <span class="col-md-2">
+              <label>transaction id:</label>
+              <input class="form-control" id="tid"></input>
+            </span>
+            <span class="col-md-2" style="position: relative; top: 23px;">
+              <button class="btn-execute btn btn-success">execute</button>
+            </span>
+          </div>
+          <div class="result"></div>
+        </div>
       </div>
     </div>
-    <div class="submitTransaction">
-      <div>
-        submit Transaction
-      </div>
-      <input id="sendto"></input>
-      <input id="value"></input>
-      <input id="memo"></input>
-      <button class="btn-submit">add transaction</button>
-    </div>
-
-    <div class="transactionCount">
-      <div>
-        Transaction count
-      </div>
-      <input id="checkBox1" type="checkbox"> pending
-      <input id="checkBox2" type="checkbox"> complete
-      <button class="btn-getcount">count</button>
-      <span class="result"></span>
-    </div>
-
-
-    <div class="getTransactionId">
-      <div>
-        get Transaction id list
-      </div>
-      <input id="from"></input>
-      <input id="to"></input>
-      <input id="checkBox1" type="checkbox"> pending
-      <input id="checkBox2" type="checkbox"> complete
-      <button class="btn-getid">query</button>
-      <span class="result"></span>
-    </div>
-
-    <div class="getTransactionById">
-      <div>
-        get Transaction info by id
-      </div>
-      <input id="tid"></input>
-      <button class="btn-query">query</button>
-      <span class="result"></span>
-    </div>
-
-    <div class="signTransactionById">
-      <div>
-        sign Transaction info by id
-      </div>
-      <input id="tid"></input>
-      <button class="btn-sign">sign</button>
-      <span class="result"></span>
-    </div>
-
-    <div class="isConfirmed">
-      <div>
-        check is confirmed by id
-      </div>
-      <input id="tid"></input>
-      <button class="btn-query">query</button>
-      <span class="result"></span>
-    </div>
-
-
-    <div class="executeTransaction">
-      <div>
-        executeTransaction by id
-      </div>
-      <input id="tid"></input>
-      <button class="btn-execute">execute</button>
-      <span class="result"></span>
-    </div>
-
-
   </body>
 </html>

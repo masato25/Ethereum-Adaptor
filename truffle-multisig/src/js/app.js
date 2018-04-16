@@ -82,8 +82,11 @@ App = {
   submitTransaction: function(toaddr, value, memo) {
     App.contracts.Adoption.deployed().then(function(inst){
       return inst.submitTransaction(toaddr, value,memo);
-    }).then(function(err){
-      console.log(err);
+    }).then(function(result){
+      // $(".submitTransaction .result").text(JSON.stringify(result, null, 2));
+      $(".submitTransaction .result").text(`tx: ${result.tx}`);
+    }).catch(function(result){
+      $(".submitTransaction .result").text(result);
     })
   },
 
@@ -96,10 +99,9 @@ App = {
     let pendingF = $(".transactionCount #checkBox1").is(":checked")
     let completeF = $(".transactionCount #checkBox2").is(":checked")
     App.contracts.Adoption.deployed().then(function(inst){
-      console.log(`pending: ${pendingF}, complete: ${completeF}`)
+      console.debug(`pending: ${pendingF}, complete: ${completeF}`)
       return inst.getTransactionCount.call(pendingF,completeF);
     }).then(function(result){
-      console.log(result)
       $(".transactionCount .result").text(result);
     }).catch(function(result){
       $(".transactionCount .result").text(result);
@@ -125,7 +127,6 @@ App = {
     App.contracts.Adoption.deployed().then(function(inst){
       return inst.getTransactionIds.call(fromId, toId, pendingF, completeF);
     }).then(function(result){
-      console.log(result)
       $(".getTransactionId .result").text(result);
     }).catch(function(result){
       $(".getTransactionId .result").text(result);
@@ -173,24 +174,21 @@ App = {
   },
 
   confirmTransaction: function() {
-    console.log("confirmTransaction")
     let tId = $(".signTransactionById #tid").val();
     App.contracts.Adoption.deployed().then(function(inst){
       return inst.confirmTransaction(tId);
     }).then(function(result){
-      console.log(result);
-      $(".signTransactionById .result").text(result);
+      // $(".signTransactionById .result").text(JSON.stringify(result, null, 2));
+      $(".signTransactionById .result").text(`tx: ${result.tx}`);
     }).catch(function(result){
       $(".signTransactionById .result").text(result);
     })
   },
 
   isConfirmedFunt: function() {
-    console.log("00")
     let tId = $(".isConfirmed #tid").val();
     App.contracts.Adoption.deployed().then(function(inst){
       return inst.isConfirmed.call(tId);
-      //return inst.getTransactionById.call(tId);
     }).then(function(result){
       $(".isConfirmed .result").text(result);
     }).catch(function(result){
@@ -213,7 +211,8 @@ App = {
     App.contracts.Adoption.deployed().then(function(inst){
       return inst.executeTransaction(tId);
     }).then(function(result){
-      $(".executeTransaction .result").text(result);
+      // $(".executeTransaction .result").text(JSON.stringify(result, null, 2));
+      $(".executeTransaction .result").text(`tx: ${result.tx}`);
     }).catch(function(result){
       $(".executeTransaction .result").text(result);
     })
